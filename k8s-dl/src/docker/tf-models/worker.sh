@@ -81,9 +81,9 @@ TASK_ID=$(echo ${POD_NAME} | cut -f2 -d'-')
 JOB_NAME=$(echo ${POD_NAME} | cut -f1 -d'-')
 
 echo "Starting job $JOB_NAME and task $TASK_ID"
-bazel build inception/${DATASET}_distributed_train
+bazel build inception/${DATASET}_train
 
-bazel-bin/inception/${DATASET}_distributed_train \
+bazel-bin/inception/${DATASET}_train \
 	--batch_size=32 \
 	--data_dir=${DATA_DIR}/${DATASET} \
 	--train_dir=${DATA_DIR}/${DATASET}-checkpoints \

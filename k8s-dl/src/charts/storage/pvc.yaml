@@ -1,0 +1,18 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: tensorflow-fs
+  namespace: default
+  labels:
+    heritage: "Tiller"
+    chart: "efs-0.0.1"
+    release: "release-name"
+  annotations:
+    "helm.sh/created": "1490351799"
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 750Gi
+

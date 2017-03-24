@@ -41,8 +41,18 @@ RUN echo "build --spawn_strategy=standalone --genrule_strategy=standalone" \
     >>/root/.bazelrc
 ENV BAZELRC /root/.bazelrc
 
-COPY bin/bazel /bin/bazel
-COPY bin/bazel-real /bin/bazel-real
+# COPY bin/bazel /bin/bazel
+# COPY bin/bazel-real /bin/bazel-real
+
+# RUN wget https://github.com/bazelbuild/bazel/releases/download/0.4.5/bazel_0.4.5-linux-x86_64.deb
+# RUN dpkg -i bazel_0.4.5-linux-x86_64.deb
+
+RUN echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+RUN curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+RUN sudo apt-get update && sudo apt-get install -y bazel
+RUN mkdir -p /bin
+RUN ln -s $(which bazel) /bin/bazel
+
 COPY download.sh /download.sh
 COPY worker.sh /worker.sh
 COPY ps.sh /ps.sh

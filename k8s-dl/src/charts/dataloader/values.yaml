@@ -4,7 +4,7 @@ global:
     aws:
       region: us-east-1
       efs:
-        id: fs-47cd610e
+        id: fs-f86dd8b1
 
 storage:
   name: tensorflow-fs
